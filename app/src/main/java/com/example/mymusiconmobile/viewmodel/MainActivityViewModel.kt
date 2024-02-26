@@ -8,7 +8,7 @@ import android.net.Uri
 import android.provider.MediaStore
 import androidx.lifecycle.AndroidViewModel
 import com.example.mymusiconmobile.MusicFile
-import com.example.mymusiconmobile.MusicPlayerActivity
+import com.example.mymusiconmobile.feature.musicplayer.MusicPlayerActivity
 import com.example.mymusiconmobile.MyMediaPlayer
 
 class MainActivityViewModel(val appContext: Application) : AndroidViewModel(appContext) {
@@ -57,6 +57,7 @@ class MainActivityViewModel(val appContext: Application) : AndroidViewModel(appC
         MyMediaPlayer.currentIndex = position
         val intent = Intent(baseContext, MusicPlayerActivity::class.java)
         intent.putExtra("LIST", musicList.toMutableList() as ArrayList<MusicFile>)
+        intent.putExtra("POSITION", position)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
         baseContext.startActivity(intent)
     }
